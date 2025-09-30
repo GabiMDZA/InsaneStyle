@@ -1,63 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f0f8ff;
-    margin: 0;
-    padding: 40px;
-    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f9f9f9;
+    width: 100%;
+    margin: 0 auto;
 }
-
+img {
+    max-width: 100%;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #000000;
+    color: #ffffff;
+}
 #contenedor {
-    background: white;
-    max-width: 800px;
-    margin: auto;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
-
-#cabecera {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-#nombre {
-    font-size: 2.5em;
-    margin: 0;
-    color: #006eff;
-}
-
-#titulo {
-    font-size: 1.2em;
-    color: #444;
-    margin-top: 5px;
-}
-
-h2 {
-    color: #006eff;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 5px;
-    margin-top: 30px;
-}
-
-ul {
-    list-style-type: disc;
-    margin-left: 25px;
-}
-
-#contacto img {
+#logo {
     display: block;
-    margin: 20px auto 0 auto;
-    border-radius: 50%;
 }
-
-#pie {
+#titulo h1, #titulo p {
+    margin: 0;
+    color: #ffffff;
+}
+#carrito img {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    padding: 0;
+}
+.productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+.producto {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
     text-align: center;
-    margin-top: 30px;
-    font-size: 0.95em;
-    color: #555;
+    border: #6a6a6a 0.5px solid;
 }
-
-#escuela {
-    color: #006eff;
-    text-decoration: none;
+.producto h2 {
+    margin: 10px 0;
+}
+.producto .precio {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.producto button {
+    padding: 10px 15px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+footer {
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
 }
