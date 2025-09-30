@@ -1,0 +1,63 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 40px;
+    color: #333;
+}
+
+#contenedor {
+    background: white;
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+#cabecera {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#nombre {
+    font-size: 2.5em;
+    margin: 0;
+    color: #006eff;
+}
+
+#titulo {
+    font-size: 1.2em;
+    color: #444;
+    margin-top: 5px;
+}
+
+h2 {
+    color: #006eff;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 25px;
+}
+
+#contacto img {
+    display: block;
+    margin: 20px auto 0 auto;
+    border-radius: 50%;
+}
+
+#pie {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.95em;
+    color: #555;
+}
+
+#escuela {
+    color: #006eff;
+    text-decoration: none;
+}
