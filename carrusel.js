@@ -1,57 +1,230 @@
-const carruselInterno = document.querySelector('.carrusel-interno');
-const productos = document.querySelectorAll('.producto');
-const prev = document.querySelector('.boton-izq');
-const next = document.querySelector('.boton-der');
+// carrusel.js — versión responsive y robusta
 
-const visibles = 3;
-const gap = 20;
-const anchoProducto = 400;
-let index = visibles;
-let animando = false;
+(() => {
+  const carruselInterno = document.querySelector('.carrusel-interno');
+  const btnPrev = document.querySelector('.boton-izq');
+  const btnNext = document.querySelector('.boton-der');
 
-// Clonar fotos
-const productosArray = Array.from(productos);
-productosArray.slice(-visibles).forEach(p => {
-  const clone = p.cloneNode(true);
-  clone.classList.add('clone');
-  carruselInterno.insertBefore(clone, carruselInterno.firstChild);
-});
-productosArray.slice(0, visibles).forEach(p => {
-  const clone = p.cloneNode(true);
-  clone.classList.add('clone');
-  carruselInterno.appendChild(clone);
-});
+  if (!carruselInterno || !btnPrev || !btnNext) return;
 
-// Posición inicial
-carruselInterno.style.transform = `translateX(${-index * (anchoProducto + gap)}px)`;
+  let autoslideTimer = null;
+  let animando = false;
 
-// Mover fotos
-function moverCarrusel(direccion) {
-  if(animando) return;
-  animando = true;
-  index += direccion;
-  carruselInterno.style.transition = 'transform 0.5s ease';
-  carruselInterno.style.transform = `translateX(${-index * (anchoProducto + gap)}px)`;
-}
+  // Estado dinámico
+  let visibles = 3;
+  let gap = 20;
+  let anchoProducto = 400;
+  let index = 0; // índice en la lista que incluye clones
+  let originalCount = 0;
 
-// Botones
-next.addEventListener('click', () => moverCarrusel(1));
-prev.addEventListener('click', () => moverCarrusel(-1));
+  // Devuelve los productos "originales" (sin contar clones)
+  function getOriginals() {
+    return Array.from(carruselInterno.querySelectorAll('.producto')).filter(el => !el.classList.contains('clone'));
+  }
 
-// Bucle
-carruselInterno.addEventListener('transitionend', () => {
-  animando = false;
-  if(index >= productos.length + visibles) {
-    carruselInterno.style.transition = 'none';
+  // Elimina clones previos
+  function removeClones() {
+    const clones = carruselInterno.querySelectorAll('.producto.clone');
+    clones.forEach(c => c.remove());
+  }
+
+  // Medir gap (flex gap) y ancho producto visibles por CSS
+  function medirDimensiones() {
+    const first = carruselInterno.querySelector('.producto');
+    const computed = getComputedStyle(carruselInterno);
+    const gapVal = computed.gap || computed.columnGap || computed.getPropertyValue('gap');
+    gap = gapVal ? parseFloat(gapVal) : 20;
+
+    if (first) {
+      const rect = first.getBoundingClientRect();
+      anchoProducto = Math.round(rect.width);
+    } else {
+      anchoProducto = 400;
+    }
+
+    // Calcular cuántos visibles caben en el contenedor (.carrusel)
+    const carrusel = carruselInterno.closest('.carrusel');
+    if (carrusel) {
+      const contW = carrusel.clientWidth;
+      // visibles = Math.floor((contW + gap) / (anchoProducto + gap));
+      // Si CSS fuerza productos a un width específico (ej. 400, 300) mejor respetarlo:
+      visibles = Math.max(1, Math.floor((contW + gap) / (anchoProducto + gap)));
+    } else {
+      visibles = 3;
+    }
+  }
+
+  // Clona últimos visibles al inicio y primeros visibles al final
+  function addClones() {
+    removeClones();
+    const originals = getOriginals();
+    originalCount = originals.length;
+    if (originalCount === 0) return;
+
+    // clones al inicio (últimos)
+    const lastSlice = originals.slice(-visibles);
+    lastSlice.forEach(node => {
+      const clone = node.cloneNode(true);
+      clone.classList.add('clone');
+      carruselInterno.insertBefore(clone, carruselInterno.firstChild);
+    });
+
+    // clones al final (primeros)
+    const firstSlice = originals.slice(0, visibles);
+    firstSlice.forEach(node => {
+      const clone = node.cloneNode(true);
+      clone.classList.add('clone');
+      carruselInterno.appendChild(clone);
+    });
+  }
+
+  // Posicionar en el índice inicial (visibles)
+  function setInitialPosition() {
     index = visibles;
-    carruselInterno.style.transform = `translateX(${-index * (anchoProducto + gap)}px)`;
-  }
-  if(index < visibles) {
+    const offset = index * (anchoProducto + gap);
     carruselInterno.style.transition = 'none';
-    index = productos.length;
-    carruselInterno.style.transform = `translateX(${-index * (anchoProducto + gap)}px)`;
+    carruselInterno.style.transform = `translateX(${-offset}px)`;
+    // forzar repaint antes de permitir transiciones
+    requestAnimationFrame(() => {
+      carruselInterno.style.transition = '';
+    });
   }
-});
 
-// AutoSlide
-setInterval(() => moverCarrusel(1), 5000);
+  // Mover el carrusel N pasos (positivo = derecha)
+  function moverCarrusel(direccion = 1) {
+    if (animando) return;
+    animando = true;
+    index += direccion;
+    const offset = index * (anchoProducto + gap);
+    carruselInterno.style.transition = 'transform 0.5s ease';
+    carruselInterno.style.transform = `translateX(${-offset}px)`;
+  }
+
+  // Manejo al terminar la transición (reajustar cuando se pase a clones)
+  function onTransitionEnd() {
+    animando = false;
+    const totalItems = carruselInterno.querySelectorAll('.producto').length; // incluye clones
+    // cuando index >= originalCount + visibles -> volvemos al index = visibles
+    if (index >= originalCount + visibles) {
+      carruselInterno.style.transition = 'none';
+      index = visibles;
+      const offset = index * (anchoProducto + gap);
+      carruselInterno.style.transform = `translateX(${-offset}px)`;
+    }
+    // cuando index < visibles -> volvemos al final real
+    if (index < visibles) {
+      carruselInterno.style.transition = 'none';
+      index = originalCount;
+      const offset = index * (anchoProducto + gap);
+      carruselInterno.style.transform = `translateX(${-offset}px)`;
+    }
+  }
+
+  // Auto slide
+  function startAutoSlide() {
+    stopAutoSlide();
+    autoslideTimer = setInterval(() => moverCarrusel(1), 5000);
+  }
+  function stopAutoSlide() {
+    if (autoslideTimer) {
+      clearInterval(autoslideTimer);
+      autoslideTimer = null;
+    }
+  }
+
+  // Re-inicializa todo (usa medirDimensiones para ser responsive)
+  function initCarousel() {
+    stopAutoSlide();
+    // ensure any previous transitionend listener removed to avoid duplicates
+    carruselInterno.removeEventListener('transitionend', onTransitionEnd);
+
+    medirDimensiones();
+    addClones();
+
+    // recalcular producto ancho por si el clonación cambió el layout
+    const first = carruselInterno.querySelector('.producto');
+    if (first) {
+      const rect = first.getBoundingClientRect();
+      anchoProducto = Math.round(rect.width);
+    }
+
+    setInitialPosition();
+
+    // listeners
+    carruselInterno.addEventListener('transitionend', onTransitionEnd);
+    startAutoSlide();
+  }
+
+  // botones
+  btnNextHandler = () => { stopAutoSlide(); moverCarrusel(1); startAutoSlide(); };
+  btnPrevHandler = () => { stopAutoSlide(); moverCarrusel(-1); startAutoSlide(); };
+
+  btnNextHandlerRef = null;
+  btnPrevHandlerRef = null;
+
+  // attach once (we ensure duplicates don't accumulate)
+  function attachButtonHandlers() {
+    // remove previous if exist
+    btnNextHandlerRef && btnNext.removeEventListener('click', btnNextHandlerRef);
+    btnPrevHandlerRef && btnPrev.removeEventListener('click', btnPrevHandlerRef);
+
+    btnNextHandlerRef = btnNextHandler;
+    btnPrevHandlerRef = btnPrevHandler;
+
+    btnNext.addEventListener('click', btnNextHandlerRef);
+    btnPrev.addEventListener('click', btnPrevHandlerRef);
+  }
+
+  // On resize: reinit but try to preserve approximate visible product
+  let resizeTimer = null;
+  function onResize() {
+    // debounce
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // Try to compute which original index is currently at left edge
+      // currentVisibleIndex = index - visibles (original items offset)
+      // We'll reinit and set index to nearest valid position.
+      const leftTranslate = Math.abs(getComputedTranslateX(carruselInterno));
+      // approximate visible original index
+      const approx = Math.round(leftTranslate / (anchoProducto + gap));
+      initCarousel();
+      // set index to approx (clamped)
+      index = Math.min(Math.max(visibles, approx), originalCount + visibles);
+      const offset = index * (anchoProducto + gap);
+      carruselInterno.style.transition = 'none';
+      carruselInterno.style.transform = `translateX(${-offset}px)`;
+      // small timeout to re-enable transitions
+      requestAnimationFrame(() => {
+        carruselInterno.style.transition = '';
+      });
+    }, 150);
+  }
+
+  // Utility: get computed translateX of element
+  function getComputedTranslateX(el) {
+    const style = window.getComputedStyle(el);
+    const transform = style.transform || style.webkitTransform;
+    if (!transform || transform === 'none') return 0;
+    const match = transform.match(/matrix\((.+)\)/);
+    if (match) {
+      const values = match[1].split(', ');
+      // matrix(a, b, c, d, tx, ty)
+      const tx = parseFloat(values[4]);
+      return tx;
+    }
+    return 0;
+  }
+
+  // Inicializar y listeners de resize
+  initCarousel();
+  attachButtonHandlers();
+  window.addEventListener('resize', onResize);
+
+  // parar autoslide al hover (opcional: mejora UX)
+  const carruselRoot = carruselInterno.closest('.carrusel');
+  if (carruselRoot) {
+    carruselRoot.addEventListener('mouseenter', stopAutoSlide);
+    carruselRoot.addEventListener('mouseleave', startAutoSlide);
+  }
+
+})();

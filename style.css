@@ -1,17 +1,13 @@
-/* Reset general */
+/* -------------------- RESET GENERAL -------------------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: all 0.2s ease-in-out;
 }
 
-/* Cuerpo */
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #f9f9f9;
-  width: 100%;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -22,14 +18,15 @@ img {
   display: block;
 }
 
-/* Header */
+/* -------------------- HEADER -------------------- */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 40px;
-  background-color: #000000;
-  color: #ffffff;
+  padding: 20px 40px;
+  background-color: #000;
+  color: #fff;
+  flex-wrap: wrap;
 }
 
 #contenedor {
@@ -39,38 +36,32 @@ header {
 }
 
 #logo {
-  display: block;
   width: 120px;
-}
-
-#titulo {
-  margin-left: 20px;
 }
 
 #titulo h1, #titulo p {
   margin: 0;
   line-height: 1.2;
-  color: #ffffff;
+  color: #fff;
 }
 
 #carrito img {
   width: 40px;
-  height: auto;
   cursor: pointer;
 }
 
-/* Productos destacados */
+/* -------------------- PRODUCTOS DESTACADOS -------------------- */
 .productosDestacados {
   font-size: 30px;
   text-align: center;
   margin: 20px 0;
 }
 
-/* Carrusel */
+/* -------------------- CARRUSEL -------------------- */
 .carrusel {
   position: relative;
   overflow: hidden;
-  width: calc(3 * 400px + 2 * 20px); /* 3 productos de 400px + 2 gaps */
+  width: 100%;
   margin: 20px auto;
 }
 
@@ -80,11 +71,9 @@ header {
   transition: transform 0.5s ease;
 }
 
-/* Producto individual */
 .producto {
-  width: 400px;
-  flex-shrink: 0;
-  background-color: #ffffff;
+  flex: 0 0 calc((100% - 40px) / 3); /* 3 productos por defecto */
+  background-color: #fff;
   border-radius: 10px;
   padding: 10px;
   text-align: center;
@@ -94,7 +83,7 @@ header {
 }
 
 .producto img {
-  width: 400px;
+  width: 100%;
   height: auto;
   border-radius: 5px;
 }
@@ -110,20 +99,20 @@ header {
 
 .producto button {
   padding: 10px 15px;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #000;
+  color: #fff;
   border: none;
   cursor: pointer;
   border-radius: 5px;
 }
 
 .producto:hover {
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
   transform: translateY(-3px);
+  box-shadow: 0 0 12px rgba(0,0,0,0.2);
 }
 
 .producto button:hover {
-  background-color: #333333;
+  background-color: #333;
   transform: scale(1.05);
 }
 
@@ -132,8 +121,8 @@ header {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #000;
+  color: #fff;
   border: none;
   cursor: pointer;
   width: 40px;
@@ -141,61 +130,37 @@ header {
   border-radius: 50%;
   font-size: 24px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   z-index: 10;
 }
 
-.boton-carrusel:hover {
-  background-color: #333333;
-}
+.boton-izq { left: 10px; }
+.boton-der { right: 10px; }
 
-.boton-izq {
-  left: 10px;
-}
-
-.boton-der {
-  right: 10px;
-}
-
-/* Secciones Quienes Somos y Contacto */
-#quienessomos, #contacto {
-  padding: 20px 40px;
-}
-
-#quienessomos h2, #contacto h2 {
-  margin-bottom: 15px;
-}
-
-#quienessomos p, #contacto p {
-  margin-bottom: 15px;
-  line-height: 1.6;
-  text-indent: 20px;
-}
-
-/* Footer general */
+/* -------------------- FOOTER -------------------- */
 .footer {
   font-family: 'Montserrat', sans-serif;
   margin-top: 40px;
-  color: #ffffff;
+  color: #fff;
 }
 
 /* Newsletter */
 .newsletter {
   position: relative;
   background: url('imagenes/newsletterfondo.png') center/cover no-repeat;
-  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 40px 10px;
 }
 
 .newsletter::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6); 
+  background: rgba(0,0,0,0.6);
 }
 
 .newsletter-overlay {
@@ -205,45 +170,41 @@ header {
 .newsletter h2 {
   font-size: 25px;
   font-weight: 700;
-  margin-bottom: 10px;
 }
 
 .newsletter p {
-  margin-bottom: 20px;
+  margin: 10px 0 20px;
 }
 
 .newsletter-form {
-  display: inline-flex;
-  background-color: #ffffff;
-  border-radius: 5px;
-  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 .newsletter-form input {
-  border: none;
   padding: 10px;
-  width: 250px;
-  font-size: 1rem;
-  outline: none;
+  flex: 1 1 250px;
 }
 
 .newsletter-form button {
-  background-color: #000000;
-  color: #ffffff;
-  border: none;
   padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
   font-weight: 700;
   cursor: pointer;
 }
 
 .newsletter-form button:hover {
-  background-color: #333333;
+  background-color: #333;
 }
 
 /* Footer contenido */
 .footer-contenido {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #fff;
+  color: #000;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 40px;
@@ -254,36 +215,23 @@ header {
 .columna h3 {
   font-size: 1.1rem;
   font-weight: 700;
-  margin-bottom: 15px;
-  color: #000000;
-}
-
-.columna ul {
-  list-style: none;
-  padding: 0;
-}
-
-.columna ul li {
-  margin: 6px 0;
 }
 
 .columna a {
   text-decoration: none;
-  color: #555555;
+  color: #555;
 }
 
 .columna a:hover {
   color: #001f5b;
 }
 
-/* Botón de arrepentimiento */
 .arrepentimiento {
   margin-top: 10px;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #000;
+  color: #fff;
   border: none;
   padding: 8px 15px;
-  font-weight: bold;
   cursor: pointer;
   border-radius: 4px;
 }
@@ -292,21 +240,15 @@ header {
   background-color: #373737;
 }
 
-/* Footer inferior */
 .footer-bottom {
-  background-color: #000000;
-  color: #ffffff;
-  border-top: 1px solid #000000;
+  background-color: #000;
+  color: #fff;
   padding: 15px;
-  font-size: 0.9rem;
   text-align: center;
+  font-size: 0.9rem;
 }
 
-/* Formulario de contacto */
-.contacto, .form-contacto {
-  padding: 20px 40px;
-}
-
+/* -------------------- FORMULARIO CONTACTO -------------------- */
 .form-contacto {
   max-width: 500px;
   margin: 30px auto;
@@ -315,31 +257,54 @@ header {
   gap: 15px;
 }
 
-.form-contacto label {
-  font-weight: 600;
-}
-
 .form-contacto input,
 .form-contacto textarea {
   padding: 10px;
-  border: 1px solid #000000;
+  border: 1px solid #000;
   border-radius: 5px;
-  font-family: 'Montserrat', sans-serif;
-  resize: none;
 }
 
 .form-contacto button {
   background-color: #000;
-  color: #ffffff;
+  color: #fff;
   border: none;
   padding: 10px;
-  border-radius: 5px;
-  font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
+  font-weight: bold;
 }
 
 .form-contacto button:hover {
   background-color: #333;
   transform: scale(1.05);
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+/* tablets */
+@media (max-width: 1024px) {
+  .producto {
+    flex: 0 0 calc((100% - 20px) / 2); /* 2 productos visibles */
+  }
+}
+
+/* celulares */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  #logo { width: 100px; }
+  #carrito img { width: 35px; }
+  #titulo h1 { font-size: 22px; }
+
+  .producto { flex: 0 0 100%; } /* 1 producto visible */
+
+  .boton-carrusel { width: 35px; height: 35px; font-size: 20px; }
+
+  .newsletter-form { flex-direction: column; }
+  .newsletter-form input { width: 80%; }
+  .newsletter { padding: 40px 10px; }
+  .footer-contenido { grid-template-columns: 1fr; text-align: center; padding: 20px; }
 }
