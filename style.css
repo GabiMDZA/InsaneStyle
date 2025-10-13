@@ -1,74 +1,251 @@
+/* --- RESETEO GLOBAL --- */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
 }
+
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #f9f9f9;
-    width: 100%;
-    margin: 0 auto;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f9f9f9;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+
 img {
-    max-width: 100%;
+  max-width: 100%;
+  display: block;
 }
+
+/* --- HEADER --- */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 30px;
-    background-color: #000000;
-    color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: #000000;
+  color: #ffffff;
 }
+
 #contenedor {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
+
 #logo {
-    display: block;
+  display: block;
+  width: 120px;
 }
-#titulo h1, #titulo p {
-    margin: 0;
-    color: #ffffff;
+
+#titulo h1,
+#titulo p {
+  margin: 0;
+  color: #ffffff;
 }
+
 #carrito img {
-    width: 40px;
-    height: auto;
-    cursor: pointer;
-    padding: 0;
+  width: 40px;
+  height: auto;
+  cursor: pointer;
 }
+
+/* --- PRODUCTOS --- */
 .productos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
 }
+
 .producto {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-    border: #6a6a6a 0.5px solid;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  border: 0.5px solid #6a6a6a;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
 }
+
 .producto h2 {
-    margin: 10px 0;
+  margin: 10px 0;
 }
+
 .producto .precio {
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
+
 .producto button {
-    padding: 10px 15px;
-    background-color: #000000;
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
+  padding: 10px 15px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
-footer {
-    background-color: #000000;
-    color: #ffffff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
+
+/* --- EFECTOS --- */
+.producto:hover {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
 }
+
+.producto button:hover {
+  background-color: #333333;
+  transform: scale(1.05);
+}
+
+/* --- QUIÉNES SOMOS (si se usa) --- */
+#quienessomos {
+  height: 100%;
+  margin: 0%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- FOOTER COMPLETO --- */
+.footer {
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 40px;
+  color: #ffffff;
+}
+
+/* --- Parte superior: Newsletter con fondo de imagen --- */
+.newsletter {
+  position: relative;
+  background: url('imagenes/newsletterfondo.png') center/cover no-repeat;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.newsletter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6); /* oscurece la imagen */
+}
+
+.newsletter-overlay {
+  position: relative;
+  z-index: 2;
+}
+
+.newsletter h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.newsletter p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.newsletter-form {
+  display: inline-flex;
+  background-color: #ffffff;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.newsletter-form input {
+  border: none;
+  padding: 10px;
+  width: 250px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.newsletter-form button {
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* --- Parte inferior: información --- */
+.footer-contenido {
+  background-color: #ffffff;
+  color: #000000;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  padding: 40px 50px;
+  text-align: left;
+}
+
+.columna h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #000000;
+}
+
+.columna ul {
+  list-style: none;
+  padding: 0;
+}
+
+.columna ul li {
+  margin: 6px 0;
+}
+
+.columna a {
+  text-decoration: none;
+  color: #555555;
+}
+
+.columna a:hover {
+  color: #001f5b;
+}
+
+.redes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.redes img {
+  width: 35px;
+  filter: brightness(0);
+}
+
+.arrepentimiento {
+  margin-top: 10px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 8px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.arrepentimiento:hover {
+  background-color: #4c4c4c;
+}
+
+.footer-bottom {
+  background-color: #000000;
+  color: #aaaaaa;
+  border-top: 1px solid #333333;
+  padding: 15px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+main {
+  padding: 0px 20px;
+}
+
