@@ -204,7 +204,7 @@ header {
 /* Footer contenido */
 .footer-contenido {
   background-color: #fff;
-  color: #000;
+  color: #000000;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 40px;
@@ -219,7 +219,7 @@ header {
 
 .columna a {
   text-decoration: none;
-  color: #555;
+  color: #555555;
 }
 
 .columna a:hover {
@@ -228,8 +228,8 @@ header {
 
 .arrepentimiento {
   margin-top: 10px;
-  background-color: #000;
-  color: #fff;
+  background-color: #000000;
+  color: #ffffff;
   border: none;
   padding: 8px 15px;
   cursor: pointer;
@@ -241,11 +241,17 @@ header {
 }
 
 .footer-bottom {
-  background-color: #000;
+  background-color: #000000;
   color: #fff;
   padding: 15px;
   text-align: center;
   font-size: 0.9rem;
+}
+
+.footer-contenido ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* -------------------- FORMULARIO CONTACTO -------------------- */
