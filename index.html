@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Insane Style</title>
-  <link rel="icon" href="/imagenes/Logo.png" type="image/png">
+  <link rel="icon" href="imagenes/Logo.png" type="image/png">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+  <!-- Header -->
   <header>
     <div id="contenedor">
       <a href="index.html">
-  <img src="imagenes/Logo.png" alt="Logo Insane Style" id="logo" width="120">
+        <img src="imagenes/Logo.png" alt="Logo Insane Style" id="logo">
       </a>
       <div id="titulo">
         <h1>Insane Style</h1>
@@ -24,121 +26,106 @@
       <img src="imagenes/carritoblanco.png" alt="Carrito de compras">
     </div>
   </header>
-    <div class="productos">
+
+  <!-- Productos Destacados -->
+  <div class="productosDestacados">
+    <h2>Productos Destacados</h2>
+  </div>
+
+  <!-- Carrusel -->
+  <div class="productos carrusel">
+    <button class="boton-carrusel boton-izq"><</button>
+    <div class="carrusel-interno">
       <div class="producto">
-        <figure>
-          <img src="imagenes/Zapas_Campus_00s_Negro.jpg" alt="Zapatillas Campus 00s Color Negro" width="400">
-        </figure>
-        <div class="info-producto">
-          <h2>Adidas Campus 00s Negras</h2>
-          <p class="precio">169.999$</p>
-          <button>Añadir al carrito</button>
-        </div>
+        <figure><img src="imagenes/Zapas_Campus_00s_Negro.jpg" alt="Zapatillas Campus 00s Negras"></figure>
+        <h2>Adidas Campus 00s Negras</h2>
+        <p class="precio">169.999$</p>
+        <button>Añadir al carrito</button>
       </div>
       <div class="producto">
-        <figure>
-          <img src="imagenes/Remera_Puma_Gris.jpg" alt="Remera Puma Gris" width="400">
-        </figure>
-        <div class="info-producto">
-          <h2>Remera Puma Gris</h2>
-          <p class="precio">49.999$</p>
-          <button>Añadir al carrito</button>
-        </div>
+        <figure><img src="imagenes/Remera_Puma_Gris.jpg" alt="Remera Puma Gris"></figure>
+        <h2>Remera Puma Gris</h2>
+        <p class="precio">49.999$</p>
+        <button>Añadir al carrito</button>
       </div>
       <div class="producto">
-        <figure>
-          <img src="imagenes/Pantalon_Baggy_Gris.png" alt="Pantalón Baggy Gris" width="400">
-        </figure>
-        <div class="info-producto">
-          <h2>Pantalón Baggy Gris</h2>
-          <p class="precio">79.999$</p>
-          <button>Añadir al carrito</button>
-        </div>
+        <figure><img src="imagenes/Pantalon_Baggy_Gris.png" alt="Pantalón Baggy Gris"></figure>
+        <h2>Pantalón Baggy Gris</h2>
+        <p class="precio">79.999$</p>
+        <button>Añadir al carrito</button>
       </div>
       <div class="producto">
-        <figure>
-          <img src="imagenes/Remera_Tupac_Estampada_Negra.webp" alt="Remera Tupac Estampada Negra" width="400">
-        </figure>
-        <div class="info-producto">
-          <h2>Remera Tupac Negra</h2>
-          <p class="precio">29.999$</p>
-          <button>Añadir al carrito</button>
-        </div>
-        
+        <figure><img src="imagenes/Remera_Tupac_Estampada_Negra.webp" alt="Remera Tupac Negra"></figure>
+        <h2>Remera Tupac Negra</h2>
+        <p class="precio">29.999$</p>
+        <button>Añadir al carrito</button>
       </div>
       <div class="producto">
-        <figure>
-          <img src="imagenes/Buzo_TylerTheCreator_CHROMAKOPIA_Negro.webp" alt="Buzo Negro Tyler The Creator Chromakopia" width="400">
-        </figure>
-        <div class="info-producto">
-          <h2>Buzo Tyler, The Creator CHROMAKOPIA negro</h2>
-          <p class="precio">229.000$</p>
-          <button>Añadir al carrito</button>
-        </div>
+        <figure><img src="imagenes/Buzo_TylerTheCreator_CHROMAKOPIA_Negro.webp" alt="Buzo Tyler The Creator Negro"></figure>
+        <h2>Buzo Tyler, The Creator CHROMAKOPIA negro</h2>
+        <p class="precio">229.000$</p>
+        <button>Añadir al carrito</button>
       </div>
       <div class="producto">
-        <figure>
-          <img src="imagenes/Gorra_Oney1_CAPS.jpg" alt="Gorra Negra Oney1 CAPS" width="400">
-        </figure>
-        <div class="info-producto">
-          <h2>Gorra Oney1 C.A.P.S.</h2>
-          <p class="precio">24.999$</p>
-          <button>Añadir al carrito</button>
-        </div>
+        <figure><img src="imagenes/Gorra_Oney1_CAPS.jpg" alt="Gorra Oney1 CAPS"></figure>
+        <h2>Gorra Oney1 C.A.P.S.</h2>
+        <p class="precio">24.999$</p>
+        <button>Añadir al carrito</button>
       </div>
-      
     </div>
+    <button class="boton-carrusel boton-der">></button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="newsletter">
+      <div class="newsletter-overlay">
+        <h2>SUSCRIBITE AL NEWSLETTER</h2>
+        <p>PARA RECIBIR OFERTAS Y NOVEDADES EN TU MAIL</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Ingresá tu email">
+          <button type="submit">OK</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-contenido">
+      <div class="columna">
+        <h3>Seguinos</h3>
+        <div class="redes">
+          <a href="https://www.instagram.com/gabriel_al2008/" target="_blank"><img src="imagenes/instagram.png" alt="Instagram" width="30px"></a>
+        </div>
+      </div>
+      <div class="columna">
+        <h3>Nosotros</h3>
+        <ul>
+          <li><a href="quienessomos.html">Quiénes somos</a></li>
+        </ul>
+      </div>
+      <div class="columna">
+        <h3>Ayuda</h3>
+        <ul>
+          <li><a href="#">Preguntas Frecuentes</a></li>
+          <li><a href="#">Políticas de Cambios/Devoluciones</a></li>
+          <li><a href="#">Promociones</a></li>
+          <li><a href="#">Términos y Condiciones</a></li>
+        </ul>
+        <button class="arrepentimiento">BOTÓN DE ARREPENTIMIENTO</button>
+      </div>
+      <div class="columna">
+        <h3>Contacto</h3>
+        <a href="contacto.html">contacto</a>
+        <p>Av. Pedro Molina, Perú, Mendoza</p>
+        <p>Escuela de Comercio Martín Zapata</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>UN EMPRENDIMIENTO DE: <strong>Gabriel Altamirano - Maximiliano Rojas - Gustavo Guevara - Fabrizio Stagnoli - Matias Hinojosa</strong></p>
+      <a href="https://mzapata.uncuyo.edu.ar/" target="_blank"><strong>Escuela de Comercio Martín Zapata</strong></a>
+    </div>
+  </footer>
+
+  <script src="carrusel.js"></script>
 </body>
-<footer class="footer">
-  <div class="newsletter">
-    <div class="newsletter-overlay">
-      <h2>SUSCRIBITE AL NEWSLETTER</h2>
-      <p>PARA RECIBIR OFERTAS Y NOVEDADES EN TU MAIL</p>
-      <form class="newsletter-form">
-        <input type="email" placeholder="Ingresá tu email" required>
-        <button type="submit">OK</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="footer-contenido">
-    <div class="columna">
-      <h3>Seguinos</h3>
-      <div class="redes">
-        <a href="#"><img src="imagenes/facebook.png" alt="Facebook"></a>
-        <a href="#"><img src="imagenes/instagram.png" alt="Instagram"></a>
-      </div>
-    </div>
-
-    <div class="columna">
-      <h3>Nosotros</h3>
-      <ul>
-        <li><a href="quienessomos.html">Quiénes somos</a></li>
-      </ul>
-    </div>
-
-    <div class="columna">
-      <h3>Ayuda</h3>
-      <ul>
-        <li><a href="#">Preguntas Frecuentes</a></li>
-        <li><a href="#">Políticas de Cambios/Devoluciones</a></li>
-        <li><a href="#">Promociones</a></li>
-        <li><a href="#">Términos y Condiciones</a></li>
-      </ul>
-      <button class="arrepentimiento">BOTÓN DE ARREPENTIMIENTO</button>
-      <p class="nota">* Solicitud de cancelación de compra</p>
-    </div>
-
-    <div class="columna">
-      <h3>Contacto</h3>
-      <p>Brandsen 805 - CABA</p>
-      <p>CUIT: 30-52541883-5</p>
-      <p>INSANE STYLE</p>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>UN EMPRENDIMIENTO DE: <strong>INSANE STYLE</strong></p>
-  </div>
-</footer>
 </html>

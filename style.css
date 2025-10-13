@@ -1,4 +1,4 @@
-/* --- RESETEO GLOBAL --- */
+/* Reset general */
 * {
   margin: 0;
   padding: 0;
@@ -6,6 +6,7 @@
   transition: all 0.2s ease-in-out;
 }
 
+/* Cuerpo */
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #f9f9f9;
@@ -21,12 +22,12 @@ img {
   display: block;
 }
 
-/* --- HEADER --- */
+/* Header */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 30px;
+  padding: 0px 40px;
   background-color: #000000;
   color: #ffffff;
 }
@@ -42,9 +43,13 @@ header {
   width: 120px;
 }
 
-#titulo h1,
-#titulo p {
+#titulo {
+  margin-left: 20px;
+}
+
+#titulo h1, #titulo p {
   margin: 0;
+  line-height: 1.2;
   color: #ffffff;
 }
 
@@ -54,21 +59,44 @@ header {
   cursor: pointer;
 }
 
-/* --- PRODUCTOS --- */
-.productos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+/* Productos destacados */
+.productosDestacados {
+  font-size: 30px;
+  text-align: center;
+  margin: 20px 0;
 }
 
+/* Carrusel */
+.carrusel {
+  position: relative;
+  overflow: hidden;
+  width: calc(3 * 400px + 2 * 20px); /* 3 productos de 400px + 2 gaps */
+  margin: 20px auto;
+}
+
+.carrusel-interno {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+}
+
+/* Producto individual */
 .producto {
+  width: 400px;
+  flex-shrink: 0;
   background-color: #ffffff;
   border-radius: 10px;
   padding: 10px;
   text-align: center;
   border: 0.5px solid #6a6a6a;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+}
+
+.producto img {
+  width: 400px;
+  height: auto;
+  border-radius: 5px;
 }
 
 .producto h2 {
@@ -89,7 +117,6 @@ header {
   border-radius: 5px;
 }
 
-/* --- EFECTOS --- */
 .producto:hover {
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
   transform: translateY(-3px);
@@ -100,26 +127,64 @@ header {
   transform: scale(1.05);
 }
 
-/* --- QUIÉNES SOMOS (si se usa) --- */
-#quienessomos {
-  height: 100%;
-  margin: 0%;
+/* Botones del carrusel */
+.boton-carrusel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
 }
 
-/* --- FOOTER COMPLETO --- */
+.boton-carrusel:hover {
+  background-color: #333333;
+}
+
+.boton-izq {
+  left: 10px;
+}
+
+.boton-der {
+  right: 10px;
+}
+
+/* Secciones Quienes Somos y Contacto */
+#quienessomos, #contacto {
+  padding: 20px 40px;
+}
+
+#quienessomos h2, #contacto h2 {
+  margin-bottom: 15px;
+}
+
+#quienessomos p, #contacto p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+  text-indent: 20px;
+}
+
+/* Footer general */
 .footer {
   font-family: 'Montserrat', sans-serif;
   margin-top: 40px;
   color: #ffffff;
 }
 
-/* --- Parte superior: Newsletter con fondo de imagen --- */
+/* Newsletter */
 .newsletter {
   position: relative;
   background: url('imagenes/newsletterfondo.png') center/cover no-repeat;
-  height: 280px;
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,24 +195,21 @@ header {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6); /* oscurece la imagen */
+  background: rgba(0, 0, 0, 0.6); 
 }
 
 .newsletter-overlay {
   position: relative;
-  z-index: 2;
 }
 
 .newsletter h2 {
-  font-size: 1.8rem;
+  font-size: 25px;
   font-weight: 700;
   margin-bottom: 10px;
 }
 
 .newsletter p {
-  font-size: 1rem;
   margin-bottom: 20px;
-  opacity: 0.9;
 }
 
 .newsletter-form {
@@ -174,7 +236,11 @@ header {
   cursor: pointer;
 }
 
-/* --- Parte inferior: información --- */
+.newsletter-form button:hover {
+  background-color: #333333;
+}
+
+/* Footer contenido */
 .footer-contenido {
   background-color: #ffffff;
   color: #000000;
@@ -210,17 +276,7 @@ header {
   color: #001f5b;
 }
 
-.redes {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.redes img {
-  width: 35px;
-  filter: brightness(0);
-}
-
+/* Botón de arrepentimiento */
 .arrepentimiento {
   margin-top: 10px;
   background-color: #000000;
@@ -233,19 +289,57 @@ header {
 }
 
 .arrepentimiento:hover {
-  background-color: #4c4c4c;
+  background-color: #373737;
 }
 
+/* Footer inferior */
 .footer-bottom {
   background-color: #000000;
-  color: #aaaaaa;
-  border-top: 1px solid #333333;
+  color: #ffffff;
+  border-top: 1px solid #000000;
   padding: 15px;
   font-size: 0.9rem;
   text-align: center;
 }
 
-main {
-  padding: 0px 20px;
+/* Formulario de contacto */
+.contacto, .form-contacto {
+  padding: 20px 40px;
 }
 
+.form-contacto {
+  max-width: 500px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-contacto label {
+  font-weight: 600;
+}
+
+.form-contacto input,
+.form-contacto textarea {
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  resize: none;
+}
+
+.form-contacto button {
+  background-color: #000;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-contacto button:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}
