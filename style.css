@@ -27,6 +27,7 @@ header {
   background-color: #000;
   color: #fff;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
 #contenedor {
@@ -45,9 +46,138 @@ header {
   color: #fff;
 }
 
+/* Menú de navegación */
+#menu-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+#menu-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+#menu-nav ul li {
+  display: inline-block;
+}
+
+#menu-nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1em;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+#menu-nav ul li a:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+#menu-nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+#menu-nav ul li a:hover::after {
+  width: 80%;
+}
+
+/* --- MENÚ HAMBURGUESA RESPONSIVE --- */
+
+/* Botón hamburguesa (solo se muestra en pantallas pequeñas) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+/* Animación del ícono al abrir */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+  /* Ocultar menú principal al inicio */
+  #menu-nav {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background-color: #000;
+    width: 200px;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    z-index: 999;
+  }
+
+  #menu-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+  }
+
+  #menu-nav.active {
+    height: 200px;
+    padding: 10px 0;
+  }
+
+  #menu-nav ul li a {
+    font-size: 1.1em;
+    color: #fff;
+  }
+
+  /* Mostrar el botón hamburguesa */
+  .menu-toggle {
+    display: flex;
+  }
+}
+
 #carrito img {
   width: 40px;
   cursor: pointer;
+}
+
+/* -------------------- MAIN (agregado para empujar el footer) -------------------- */
+main {
+  flex: 1;
+  padding: 20px;
 }
 
 /* -------------------- PRODUCTOS DESTACADOS -------------------- */
@@ -141,7 +271,7 @@ header {
 /* -------------------- FOOTER -------------------- */
 .footer {
   font-family: 'Montserrat', sans-serif;
-  margin-top: 40px;
+  margin-top: auto;  /* AGREGADO: empuja el footer hacia abajo */
   color: #fff;
 }
 
@@ -256,32 +386,216 @@ header {
 
 /* -------------------- FORMULARIO CONTACTO -------------------- */
 .form-contacto {
-  max-width: 500px;
-  margin: 30px auto;
+  max-width: 600px;
+  margin: 40px auto;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.form-contacto label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #000;
+  display: block;
 }
 
 .form-contacto input,
 .form-contacto textarea {
-  padding: 10px;
-  border: 1px solid #000;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
   border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  transition: border-color 0.3s;
+}
+
+.form-contacto input:focus,
+.form-contacto textarea:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.form-contacto textarea {
+  resize: vertical;
+  min-height: 120px;
 }
 
 .form-contacto button {
   background-color: #000;
   color: #fff;
   border: none;
-  padding: 10px;
+  padding: 12px 30px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 1em;
+  border-radius: 5px;
+  transition: all 0.3s;
+  margin-top: 10px;
 }
 
 .form-contacto button:hover {
   background-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Centra el contenido de la sección contacto */
+#contacto {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+#contacto h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+#contacto p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Estilos para la página Quiénes Somos */
+#quienes-somos {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+#quienes-somos h2 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  color: #000;
+  text-align: center;
+}
+
+#quienes-somos p {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+  text-align: justify;
+  text-justify: inter-word;
+  margin-bottom: 20px;
+}
+
+#quienes-somos p:last-child {
+  margin-bottom: 0;
+}
+
+/* -------------------- CATÁLOGO -------------------- */
+#catalogo {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+#catalogo h2 {
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.catalogo-intro {
+  text-align: center;
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 50px;
+}
+
+.categoria {
+  margin-bottom: 60px;
+}
+
+.categoria-titulo {
+  font-size: 2em;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #000;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.productos-grid .producto {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.productos-grid .producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.productos-grid .producto figure {
+  margin: 0 0 15px 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.productos-grid .producto img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.productos-grid .producto:hover img {
   transform: scale(1.05);
+}
+
+.productos-grid .producto h4 {
+  font-size: 1.1em;
+  margin: 10px 0;
+  color: #000;
+  font-weight: 600;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productos-grid .producto .precio {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #000;
+  margin: 10px 0 15px;
+}
+
+.productos-grid .producto button {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+.productos-grid .producto button:hover {
+  background-color: #333;
+  transform: translateY(-2px);
 }
 
 /* ===================== RESPONSIVE ===================== */
@@ -297,13 +611,27 @@ header {
 @media (max-width: 768px) {
   header {
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     text-align: center;
   }
 
   #logo { width: 100px; }
   #carrito img { width: 35px; }
   #titulo h1 { font-size: 22px; }
+
+  #menu-nav {
+    width: 100%;
+  }
+
+  #menu-nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #menu-nav ul li a {
+    display: block;
+    width: 100%;
+  }
 
   .producto { flex: 0 0 100%; } /* 1 producto visible */
 

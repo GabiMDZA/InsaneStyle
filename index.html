@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <!-- Header -->
+<!-- Header -->
   <header>
     <div id="contenedor">
       <a href="index.html">
@@ -22,6 +22,24 @@
         <p>Tienda Insana xd</p>
       </div>
     </div>
+    
+    <!-- NUEVO: Botón hamburguesa -->
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Menú de navegación -->
+    <nav id="menu-nav">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a href="quienessomos.html">Quiénes Somos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+    
     <div id="carrito">
       <img src="imagenes/carritoblanco.png" alt="Carrito de compras">
     </div>
@@ -39,37 +57,37 @@
       <div class="producto">
         <figure><img src="imagenes/Zapas_Campus_00s_Negro.jpg" alt="Zapatillas Campus 00s Negras"></figure>
         <h2>Adidas Campus 00s Negras</h2>
-        <p class="precio">169.999$</p>
+        <p class="precio">$169.999</p>
         <button>Añadir al carrito</button>
       </div>
       <div class="producto">
         <figure><img src="imagenes/Remera_Puma_Gris.jpg" alt="Remera Puma Gris"></figure>
         <h2>Remera Puma Gris</h2>
-        <p class="precio">49.999$</p>
+        <p class="precio">$49.999</p>
         <button>Añadir al carrito</button>
       </div>
       <div class="producto">
         <figure><img src="imagenes/Pantalon_Baggy_Gris.png" alt="Pantalón Baggy Gris"></figure>
         <h2>Pantalón Baggy Gris</h2>
-        <p class="precio">79.999$</p>
+        <p class="precio">$79.999</p>
         <button>Añadir al carrito</button>
       </div>
       <div class="producto">
         <figure><img src="imagenes/Remera_Tupac_Estampada_Negra.webp" alt="Remera Tupac Negra"></figure>
         <h2>Remera Tupac Negra</h2>
-        <p class="precio">29.999$</p>
+        <p class="precio">$29.999</p>
         <button>Añadir al carrito</button>
       </div>
       <div class="producto">
         <figure><img src="imagenes/Buzo_TylerTheCreator_CHROMAKOPIA_Negro.webp" alt="Buzo Tyler The Creator Negro"></figure>
         <h2>Buzo Tyler, The Creator CHROMAKOPIA negro</h2>
-        <p class="precio">229.000$</p>
+        <p class="precio">$229.000</p>
         <button>Añadir al carrito</button>
       </div>
       <div class="producto">
         <figure><img src="imagenes/Gorra_Oney1_CAPS.jpg" alt="Gorra Oney1 CAPS"></figure>
         <h2>Gorra Oney1 C.A.P.S.</h2>
-        <p class="precio">24.999$</p>
+        <p class="precio">$24.999</p>
         <button>Añadir al carrito</button>
       </div>
     </div>
@@ -127,5 +145,15 @@
   </footer>
 
   <script src="carrusel.js"></script>
+  <!-- NUEVO: Script menú hamburguesa -->
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('menu-nav');
+
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      toggle.classList.toggle('open');
+    });
+  </script>
 </body>
 </html>
