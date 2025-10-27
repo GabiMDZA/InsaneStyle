@@ -9,9 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
 </head>
-<body>
 
-<!-- Header -->
+<body>
   <header>
     <div id="contenedor">
       <a href="index.html">
@@ -22,8 +21,23 @@
         <p>Tienda Insana xd</p>
       </div>
     </div>
-    
-    <!-- NUEVO: Botón hamburguesa -->
+
+    <!-- Carrito -->
+    <div id="carrito">
+      <img src="imagenes/carritoblanco.png" alt="Carrito de compras">
+    </div>
+
+    <!-- Buscador -->
+    <div id="busqueda">
+      <form id="form-busqueda">
+        <input type="text" placeholder="Buscar">
+        <button type="submit">
+          <img src="imagenes/lupa.png" alt="Buscar" width="20">
+        </button>
+      </form>
+    </div>
+
+    <!-- Botón hamburguesa -->
     <div class="menu-toggle" id="menu-toggle">
       <span></span>
       <span></span>
@@ -39,10 +53,6 @@
         <li><a href="contacto.html">Contacto</a></li>
       </ul>
     </nav>
-    
-    <div id="carrito">
-      <img src="imagenes/carritoblanco.png" alt="Carrito de compras">
-    </div>
   </header>
 
   <!-- Productos Destacados -->
@@ -53,6 +63,7 @@
   <!-- Carrusel -->
   <div class="productos carrusel">
     <button class="boton-carrusel boton-izq"><</button>
+
     <div class="carrusel-interno">
       <div class="producto">
         <figure><img src="imagenes/Zapas_Campus_00s_Negro.jpg" alt="Zapatillas Campus 00s Negras"></figure>
@@ -60,30 +71,35 @@
         <p class="precio">$169.999</p>
         <button>Añadir al carrito</button>
       </div>
+
       <div class="producto">
         <figure><img src="imagenes/Remera_Puma_Gris.jpg" alt="Remera Puma Gris"></figure>
         <h2>Remera Puma Gris</h2>
         <p class="precio">$49.999</p>
         <button>Añadir al carrito</button>
       </div>
+
       <div class="producto">
         <figure><img src="imagenes/Pantalon_Baggy_Gris.png" alt="Pantalón Baggy Gris"></figure>
         <h2>Pantalón Baggy Gris</h2>
         <p class="precio">$79.999</p>
         <button>Añadir al carrito</button>
       </div>
+
       <div class="producto">
         <figure><img src="imagenes/Remera_Tupac_Estampada_Negra.webp" alt="Remera Tupac Negra"></figure>
         <h2>Remera Tupac Negra</h2>
         <p class="precio">$29.999</p>
         <button>Añadir al carrito</button>
       </div>
+
       <div class="producto">
         <figure><img src="imagenes/Buzo_TylerTheCreator_CHROMAKOPIA_Negro.webp" alt="Buzo Tyler The Creator Negro"></figure>
         <h2>Buzo Tyler, The Creator CHROMAKOPIA negro</h2>
         <p class="precio">$229.000</p>
         <button>Añadir al carrito</button>
       </div>
+
       <div class="producto">
         <figure><img src="imagenes/Gorra_Oney1_CAPS.jpg" alt="Gorra Oney1 CAPS"></figure>
         <h2>Gorra Oney1 C.A.P.S.</h2>
@@ -91,6 +107,7 @@
         <button>Añadir al carrito</button>
       </div>
     </div>
+
     <button class="boton-carrusel boton-der">></button>
   </div>
 
@@ -111,15 +128,19 @@
       <div class="columna">
         <h3>Seguinos</h3>
         <div class="redes">
-          <a href="https://www.instagram.com/gabriel_al2008/" target="_blank"><img src="imagenes/instagram.png" alt="Instagram" width="30px"></a>
+          <a href="https://www.instagram.com/gabriel_al2008/" target="_blank">
+            <img src="imagenes/instagram.png" alt="Instagram" width="30px">
+          </a>
         </div>
       </div>
+
       <div class="columna">
         <h3>Nosotros</h3>
         <ul>
           <li><a href="quienessomos.html">Quiénes somos</a></li>
         </ul>
       </div>
+
       <div class="columna">
         <h3>Ayuda</h3>
         <ul>
@@ -130,6 +151,7 @@
         </ul>
         <button class="arrepentimiento">BOTÓN DE ARREPENTIMIENTO</button>
       </div>
+
       <div class="columna">
         <h3>Contacto</h3>
         <a href="contacto.html">contacto</a>
@@ -139,21 +161,17 @@
     </div>
 
     <div class="footer-bottom">
-      <p>UN EMPRENDIMIENTO DE: <strong>Gabriel Altamirano - Maximiliano Rojas - Gustavo Guevara - Fabrizio Stagnoli - Matias Hinojosa</strong></p>
-      <a href="https://mzapata.uncuyo.edu.ar/" target="_blank"><strong>Escuela de Comercio Martín Zapata</strong></a>
+      <p>
+        UN EMPRENDIMIENTO DE:
+        <strong>Gabriel Altamirano - Maximiliano Rojas - Gustavo Guevara - Fabrizio Stagnoli - Matias Hinojosa</strong>
+      </p>
+      <a href="https://mzapata.uncuyo.edu.ar/" target="_blank">
+        <strong>Escuela de Comercio Martín Zapata</strong>
+      </a>
     </div>
   </footer>
 
   <script src="carrusel.js"></script>
-  <!-- NUEVO: Script menú hamburguesa -->
-  <script>
-    const toggle = document.getElementById('menu-toggle');
-    const nav = document.getElementById('menu-nav');
-
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-      toggle.classList.toggle('open');
-    });
-  </script>
+  <script src="menu.js"></script>
 </body>
 </html>

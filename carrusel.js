@@ -1,5 +1,4 @@
 // carrusel.js — versión responsive y robusta
-
 (() => {
   const carruselInterno = document.querySelector('.carrusel-interno');
   const btnPrev = document.querySelector('.boton-izq');
@@ -19,7 +18,9 @@
 
   // Devuelve los productos "originales" (sin contar clones)
   function getOriginals() {
-    return Array.from(carruselInterno.querySelectorAll('.producto')).filter(el => !el.classList.contains('clone'));
+    return Array.from(carruselInterno.querySelectorAll('.producto')).filter(
+      el => !el.classList.contains('clone')
+    );
   }
 
   // Elimina clones previos
@@ -46,8 +47,6 @@
     const carrusel = carruselInterno.closest('.carrusel');
     if (carrusel) {
       const contW = carrusel.clientWidth;
-      // visibles = Math.floor((contW + gap) / (anchoProducto + gap));
-      // Si CSS fuerza productos a un width específico (ej. 400, 300) mejor respetarlo:
       visibles = Math.max(1, Math.floor((contW + gap) / (anchoProducto + gap)));
     } else {
       visibles = 3;
@@ -84,7 +83,6 @@
     const offset = index * (anchoProducto + gap);
     carruselInterno.style.transition = 'none';
     carruselInterno.style.transform = `translateX(${-offset}px)`;
-    // forzar repaint antes de permitir transiciones
     requestAnimationFrame(() => {
       carruselInterno.style.transition = '';
     });
@@ -104,14 +102,14 @@
   function onTransitionEnd() {
     animando = false;
     const totalItems = carruselInterno.querySelectorAll('.producto').length; // incluye clones
-    // cuando index >= originalCount + visibles -> volvemos al index = visibles
+
     if (index >= originalCount + visibles) {
       carruselInterno.style.transition = 'none';
       index = visibles;
       const offset = index * (anchoProducto + gap);
       carruselInterno.style.transform = `translateX(${-offset}px)`;
     }
-    // cuando index < visibles -> volvemos al final real
+
     if (index < visibles) {
       carruselInterno.style.transition = 'none';
       index = originalCount;
@@ -125,6 +123,7 @@
     stopAutoSlide();
     autoslideTimer = setInterval(() => moverCarrusel(1), 5000);
   }
+
   function stopAutoSlide() {
     if (autoslideTimer) {
       clearInterval(autoslideTimer);
@@ -135,13 +134,10 @@
   // Re-inicializa todo (usa medirDimensiones para ser responsive)
   function initCarousel() {
     stopAutoSlide();
-    // ensure any previous transitionend listener removed to avoid duplicates
     carruselInterno.removeEventListener('transitionend', onTransitionEnd);
-
     medirDimensiones();
     addClones();
 
-    // recalcular producto ancho por si el clonación cambió el layout
     const first = carruselInterno.querySelector('.producto');
     if (first) {
       const rect = first.getBoundingClientRect();
@@ -149,22 +145,27 @@
     }
 
     setInitialPosition();
-
-    // listeners
     carruselInterno.addEventListener('transitionend', onTransitionEnd);
     startAutoSlide();
   }
 
   // botones
-  btnNextHandler = () => { stopAutoSlide(); moverCarrusel(1); startAutoSlide(); };
-  btnPrevHandler = () => { stopAutoSlide(); moverCarrusel(-1); startAutoSlide(); };
+  const btnNextHandler = () => {
+    stopAutoSlide();
+    moverCarrusel(1);
+    startAutoSlide();
+  };
 
-  btnNextHandlerRef = null;
-  btnPrevHandlerRef = null;
+  const btnPrevHandler = () => {
+    stopAutoSlide();
+    moverCarrusel(-1);
+    startAutoSlide();
+  };
 
-  // attach once (we ensure duplicates don't accumulate)
+  let btnNextHandlerRef = null;
+  let btnPrevHandlerRef = null;
+
   function attachButtonHandlers() {
-    // remove previous if exist
     btnNextHandlerRef && btnNext.removeEventListener('click', btnNextHandlerRef);
     btnPrevHandlerRef && btnPrev.removeEventListener('click', btnPrevHandlerRef);
 
@@ -178,22 +179,17 @@
   // On resize: reinit but try to preserve approximate visible product
   let resizeTimer = null;
   function onResize() {
-    // debounce
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      // Try to compute which original index is currently at left edge
-      // currentVisibleIndex = index - visibles (original items offset)
-      // We'll reinit and set index to nearest valid position.
       const leftTranslate = Math.abs(getComputedTranslateX(carruselInterno));
-      // approximate visible original index
       const approx = Math.round(leftTranslate / (anchoProducto + gap));
       initCarousel();
-      // set index to approx (clamped)
+
       index = Math.min(Math.max(visibles, approx), originalCount + visibles);
       const offset = index * (anchoProducto + gap);
       carruselInterno.style.transition = 'none';
       carruselInterno.style.transform = `translateX(${-offset}px)`;
-      // small timeout to re-enable transitions
+
       requestAnimationFrame(() => {
         carruselInterno.style.transition = '';
       });
@@ -208,9 +204,7 @@
     const match = transform.match(/matrix\((.+)\)/);
     if (match) {
       const values = match[1].split(', ');
-      // matrix(a, b, c, d, tx, ty)
-      const tx = parseFloat(values[4]);
-      return tx;
+      return parseFloat(values[4]);
     }
     return 0;
   }
@@ -226,5 +220,4 @@
     carruselRoot.addEventListener('mouseenter', stopAutoSlide);
     carruselRoot.addEventListener('mouseleave', startAutoSlide);
   }
-
 })();

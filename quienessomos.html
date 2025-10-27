@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<!-- Header -->
+  <!-- Header -->
   <header>
     <div id="contenedor">
       <a href="index.html">
@@ -21,7 +21,14 @@
         <p>Tienda Insana xd</p>
       </div>
     </div>
-    
+
+    <!-- Botón hamburguesa -->
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
     <!-- Menú de navegación -->
     <nav id="menu-nav">
       <ul>
@@ -31,34 +38,34 @@
         <li><a href="contacto.html">Contacto</a></li>
       </ul>
     </nav>
-    
-    <div id="carrito">
-      <img src="imagenes/carritoblanco.png" alt="Carrito de compras">
-    </div>
   </header>
+
   <main>
-    <section id="quienes-somos">
+    <section id="quienes-somos" class="contenido-principal">
       <h2>Quiénes Somos</h2>
-      <p>
-    Insane Style es una marca de ropa urbana creada en Mendoza, Argentina, por un grupo de jóvenes estudiantes apasionados por la moda y la cultura street. Nacida en 2025, surge con el objetivo de romper con lo convencional y ofrecer prendas que expresen autenticidad, actitud y libertad.
-      </p>
-  
-      <p>
-    Nos especializamos en un estilo oversize y baggy, inspirado en la esencia del hip hop, el skate, y la vida urbana contemporánea. Cada diseño está pensado para combinar comodidad, calidad y originalidad, transformando lo cotidiano en una forma de expresión personal.
-      </p>
-  
-      <p>
-    En Insane Style, creemos que la ropa es mucho más que una prenda: es una forma de contar quién sos. Por eso, apostamos por materiales duraderos, detalles cuidados y una estética única que representa el espíritu libre, creativo y rebelde de una nueva generación.
-      </p>
-  
-      <p>
-    Nuestra misión es vestir a quienes no temen destacar, a quienes encuentran en la calle su pasarela y en la autenticidad su mejor estilo.
-      </p>
+
+      <div class="bloque-texto">
+        <p>Insane Style es una marca de ropa urbana creada en Mendoza, Argentina, por un grupo de jóvenes estudiantes apasionados por la moda y la cultura street. Nacida en 2025, surge con el objetivo de romper con lo convencional y ofrecer prendas que expresen autenticidad, actitud y libertad.</p>
+      </div>
+
+      <div class="bloque-texto">
+        <h3>Nuestro estilo</h3>
+        <p>Nos especializamos en un estilo oversize y baggy, inspirado en la esencia del hip hop, el skate, y la vida urbana contemporánea. Cada diseño está pensado para combinar comodidad, calidad y originalidad, transformando lo cotidiano en una forma de expresión personal.</p>
+      </div>
+
+      <div class="bloque-texto">
+        <h3>Nuestra filosofía</h3>
+        <p>En Insane Style, creemos que la ropa es mucho más que una prenda: es una forma de contar quién sos. Por eso, apostamos por materiales duraderos, detalles cuidados y una estética única que representa el espíritu libre, creativo y rebelde de una nueva generación.</p>
+      </div>
+
+      <div class="bloque-texto">
+        <h3>Misión</h3>
+        <p>Nuestra misión es vestir a quienes no temen destacar, a quienes encuentran en la calle su pasarela y en la autenticidad su mejor estilo.</p>
+      </div>
     </section>
   </main>
 
   <footer class="footer">
-    <!-- Footer completo (igual al de contacto) -->
     <div class="newsletter">
       <div class="newsletter-overlay">
         <h2>SUSCRIBITE AL NEWSLETTER</h2>
@@ -74,7 +81,9 @@
       <div class="columna">
         <h3>Seguinos</h3>
         <div class="redes">
-          <a href="https://www.instagram.com/gabriel_al2008/" target="_blank"><img src="imagenes/instagram.png" width="30" alt="Instagram"></a>
+          <a href="https://www.instagram.com/gabriel_al2008/" target="_blank">
+            <img src="imagenes/instagram.png" width="30" alt="Instagram">
+          </a>
         </div>
       </div>
 
@@ -99,7 +108,6 @@
       <div class="columna">
         <h3>Contacto</h3>
         <a href="contacto.html">contacto</a>
-        <br>
         <p>Av. Pedro Molina, Perú, Mendoza</p>
         <p>Escuela de Comercio Martín Zapata</p>
       </div>
@@ -110,5 +118,7 @@
       <a href="https://mzapata.uncuyo.edu.ar/" target="_blank"><strong>Escuela de Comercio Martín Zapata</strong></a>
     </div>
   </footer>
+
+  <script src="menu.js"></script>
 </body>
 </html>
