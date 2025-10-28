@@ -11,6 +11,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-top: 150px; /* espacio para el header fijo */
 }
 
 img {
@@ -23,11 +24,17 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 40px;
+  padding: 5px 40px;
   background-color: #000;
   color: #fff;
   flex-wrap: wrap;
   gap: 20px;
+
+  position: fixed; /* FIXED */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
 }
 
 #contenedor {
@@ -84,7 +91,7 @@ header {
   background-color: #333;
 }
 
-/* --- MENÚ HAMBURGUESA RESPONSIVE --- */
+/* --- MENÚ HAMBURGUESA --- */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -102,54 +109,6 @@ header {
   width: 100%;
   background: white;
   border-radius: 3px;
-}
-
-/* -------------------- MODO CELULAR -------------------- */
-@media (max-width: 1024px) {
-  header {
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-  }
-
-  #carrito {
-    order: 1;
-  }
-
-  .menu-toggle {
-    display: flex;
-    order: 3;
-  }
-
-  #menu-nav {
-    position: absolute;
-    top: 80px;
-    right: 0;
-    background-color: #000;
-    width: 220px;
-    display: none;
-    z-index: 999;
-    justify-content: center;
-  }
-
-  #menu-nav.active {
-    display: block;
-  }
-
-  #menu-nav ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 0;
-    margin: 0;
-  }
-
-  #menu-nav ul li a {
-    font-size: 1.1em;
-    color: #fff;
-    width: 100%;
-    text-align: center;
-  }
 }
 
 /* -------------------- MAIN -------------------- */
@@ -175,12 +134,12 @@ main {
 
 .carrusel-interno {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   transition: transform 0.5s ease;
 }
 
 .producto {
-  flex: 0 0 calc((100% - 40px) / 3); /* 3 productos en escritorio */
+  flex: 0 0 calc((100% - 40px) / 3);
   background-color: #fff;
   border-radius: 10px;
   padding: 10px;
@@ -430,69 +389,8 @@ main {
 #busqueda {
   display: flex;
   align-items: center;
-  margin-left: 10px;
-}
-
-#form-busqueda {
-  display: flex;
-  align-items: center;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-#form-busqueda input {
-  border: none;
-  padding: 8px 12px;
-  font-size: 1em;
-  outline: none;
-  width: 150px;
-}
-
-#form-busqueda button {
-  background: none;
-  border: none;
-  padding: 8px 10px;
-  cursor: pointer;
-}
-
-#form-busqueda button img {
-  display: block;
-}
-
-/* -------------------- CARRUSEL RESPONSIVO PARA 2 PRODUCTOS -------------------- */
-@media (max-width: 1024px) {
-  .producto {
-    flex: 0 0 calc((100% - 20px) / 2); /* 2 productos por fila */
-  }
-
-  .carrusel-interno {
-    gap: 10px;
-  }
-}
-
-.contenido-principal {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
-
-.bloque-texto {
-  margin-bottom: 30px;
-  line-height: 1.6;
-}
-
-.bloque-texto h3 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #000;
-}
-/* Contenedor buscador */
-#busqueda {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Centra contenido horizontal */
-  flex: 1; /* Ocupa espacio disponible */
+  justify-content: center;
+  flex: 1;
 }
 
 #form-busqueda {
@@ -516,4 +414,153 @@ main {
   border: none;
   padding: 8px 10px;
   cursor: pointer;
+}
+
+/* -------------------- CATÁLOGO -------------------- */
+#catalogo {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.categoria {
+  margin-bottom: 60px;
+}
+
+.categoria-titulo {
+  font-size: 1.8em;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #000;
+}
+
+/* GRID GENERAL DE PRODUCTOS */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  justify-items: stretch;
+}
+
+.productos-grid .producto {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: none;
+  border: 1px solid #ddd;
+}
+
+.productos-grid .producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* -------------------- GRID SOLO PARA CATALOGO -------------------- */
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 productos por fila en PC */
+  gap: 10px;
+  justify-items: stretch;
+}
+
+/* Responsive para catalogo */
+@media (max-width: 1024px) {
+  .catalogo-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 productos por fila */
+  }
+}
+
+@media (max-width: 768px) {
+  .catalogo-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 productos por fila */
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .catalogo-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 productos por fila */
+    gap: 6px;
+  }
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 1024px) {
+  .productos-grid {
+    gap: 10px;
+  }
+}
+
+/* -------------------- MENÚ HAMBURGUESA RESPONSIVE -------------------- */
+@media (max-width: 1024px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  #menu-nav {
+    display: none;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background-color: #000;
+    width: 220px;
+    z-index: 1000;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #menu-nav.active {
+    display: flex;
+  }
+
+  #menu-nav ul {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  #menu-nav ul li a {
+    width: 100%;
+    display: block;
+    padding: 12px 0;
+  }
+}
+
+/* -------------------- CARRUSELES ESPECÍFICOS -------------------- */
+/* Últimos 3 carruseles: 4 productos en PC, 3 en móvil */
+.carrusel.gorras .producto,
+.carrusel.vans .producto,
+.carrusel.dc .producto {
+  flex: 0 0 calc((100% - 30px) / 4); /* 4 productos en PC */
+}
+
+@media (max-width: 1024px) {
+  .carrusel.gorras .producto,
+  .carrusel.vans .producto,
+  .carrusel.dc .producto {
+    flex: 0 0 calc((100% - 20px) / 3); /* 3 productos en tablet / móvil grande */
+  }
+}
+
+@media (max-width: 768px) {
+  .carrusel.gorras .producto,
+  .carrusel.vans .producto,
+  .carrusel.dc .producto {
+    flex: 0 0 calc((100% - 15px) / 3); /* 3 productos en móvil */
+  }
+}
+
+.carrusel-titulo {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 15px 0 10px 0;
+  color: #000;
 }
