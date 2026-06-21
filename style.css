@@ -227,7 +227,7 @@ main {
 #carrito-main {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 30px;
+  padding: 0 30px 30px;
   background: #f5f5f5;
   border-radius: 28px;
   box-shadow: 0 20px 70px rgba(0, 0, 0, 0.08);
@@ -348,15 +348,16 @@ main {
   display: grid;
   gap: 18px;
   padding: 32px;
-  background: #111;
+  background: #fff;
   border-radius: 24px;
-  color: #fff;
+  color: #111;
   margin-top: 26px;
 }
 
 #checkout-form h3 {
   margin: 0;
   font-size: 1.6rem;
+  color: #111;
 }
 
 #checkout-form label {
@@ -364,27 +365,28 @@ main {
   gap: 8px;
   font-weight: 600;
   font-size: 0.95rem;
+  color: #111;
 }
 
 #checkout-form input,
 #checkout-form select {
   width: 100%;
   padding: 14px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid #d1d5db;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.09);
-  color: #fff;
+  background: #f9fafb;
+  color: #111;
   outline: none;
 }
 
 #checkout-form input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: #9ca3af;
 }
 
 #checkout-form button {
   width: fit-content;
   justify-self: start;
-  background: linear-gradient(135deg, #e63946, #f77f00);
+  background: #111;
   color: #fff;
   font-weight: 700;
   padding: 14px 24px;
@@ -392,7 +394,7 @@ main {
 
 #checkout-form button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(230, 57, 70, 0.2);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
 }
 
 .boton-volver {
